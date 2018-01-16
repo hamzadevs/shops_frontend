@@ -1,18 +1,6 @@
 <div id="app">
   <div class="container">
-    <div class="row">
-      <div class="col-xs-12">
-        <div class="" *ngIf="signing">
-          <a href="#" [routerLink]="['/']">Nearby Shops</a>
-          <a href="#" [routerLink]="['/preferred_shop']">Preferred Shops</a>
-        </div>
-        <div class="" *ngIf="!signing">
-          <a href="" [routerLink]="['/signin']">Signin</a>
-          <a href="" [routerLink]="['/signup']">Signup</a>
-        </div>
-      </div>
-    </div>
-    <hr>
+    <app-navbar></app-navbar>
     <div class="row">
       <div class="col-xs-12">
         <router-outlet></router-outlet>

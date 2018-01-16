@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Shop } from '../shop.interface';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-shop',
@@ -8,9 +9,18 @@ import { Shop } from '../shop.interface';
 })
 export class ShopComponent implements OnInit {
   @Input() shop: Shop;
-  constructor() { }
+  private isloggedin;
+  constructor(private authService: AuthService) {
+    this.isloggedin = this.authService.isLoggedin();
+  }
 
   ngOnInit() {
+  }
+  onLike(){
+
+  }
+  onDislike(){
+
   }
 
 }

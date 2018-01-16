@@ -12,12 +12,19 @@ import { AuthService } from '../auth.service';
 })
 export class ShopsComponent implements OnInit {
   shops: Shop[];
-  private signing;
-  constructor(private shopService: ShopService, private authService: AuthService) { }
-
-  ngOnInit() {
-    this.signing = this.authService.getToken();
+  private isloggedin;
+  private nearby = true;
+  constructor(private shopService: ShopService, private authService: AuthService) {
+    this.isloggedin = this.authService.isLoggedin();
   }
+  ngOnInit() {
+    this.shopService.getNearbyShops()
+      .subscribe(
+        (shops: Shop[]) => this.shops = shops,
+        (error: Response) => console.log(error)
+      );
+  }
+
 
   onGetShops(){
     this.shopService.getNearbyShops()

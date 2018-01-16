@@ -3,17 +3,21 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-
+//components
 import { AppComponent } from './app.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
-import { routing } from './app.routing';
-import { AuthService } from './auth.service';
-import { ShopService } from './shop.service';
 import { ShopsComponent } from './shops/shops.component';
 import { ShopComponent } from './shop/shop.component';
-import { PreferredshopsComponent } from './preferredshops/preferredshops.component';
-
+import { PrefferedshopComponent } from './prefferedshop/prefferedshop.component';
+//routing
+import { routing } from './app.routing';
+//services
+import { AuthService } from './auth.service';
+import { ShopService } from './shop.service';
+//guards
+import { AuthGuard } from './auth.guard';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
 @NgModule({
@@ -23,7 +27,8 @@ import { PreferredshopsComponent } from './preferredshops/preferredshops.compone
     SigninComponent,
     ShopsComponent,
     ShopComponent,
-    PreferredshopsComponent
+    PrefferedshopComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,7 @@ import { PreferredshopsComponent } from './preferredshops/preferredshops.compone
     HttpModule,
     routing
   ],
-  providers: [AuthService,ShopService],
+  providers: [AuthService,ShopService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

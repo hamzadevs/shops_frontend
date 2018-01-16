@@ -3,11 +3,11 @@
     <h3 class="panel-title"> {{ shop.name}}</h3>
   </div>
   <div class="panel-body">
-    <img src="" alt="" >
+    <img src="" alt="" class="shop-img" >
     <span class="label label-default">distance:</span>{{shop.distance}}
   </div>
-  <div class="panel-footer">
-    <button type="button" class="btn btn-success">Like</button>
-    <button type="button" class="btn btn-danger">Dislike</button>
+  <div class="panel-footer" *ngIf="nearby">
+    <button type="button" class="btn btn-success" (click) = 'onLike()'>Like</button>
+    <button type="button" class="btn btn-danger" (click) = 'onDislike()'>Dislike</button>
   </div>
 </div>

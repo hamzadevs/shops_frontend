@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Http, Headers ,Response } from '@angular/http';
 import { Observable } from 'rxjs'
 import 'rxjs/Rx'
 @Injectable()
 export class AuthService{
-  constructor(private http: Http){
+  constructor(private http: Http, private router: Router){
 
   }
   signup(name:string,email: string, password:string ){
     return this.http.post('http://shops.laravel.loc/api/user/signup',
     {name:name,email:email,password:password},
-    {headers: new Headers({'X-Requested-With': 'XMLHttpResquest'})}
-    );
+    {headers: new Headers({'X-Requested-With': 'XMLHttpResquest'})})
+    .map((response: Response)=>{
+      this.router.navigateByUrl('signin');
+    });
   }
 
   Signin(email: string, password:string ){
@@ -28,6 +31,7 @@ export class AuthService{
     .do(
       tokenData => {
         localStorage.setItem('token',tokenData.token);
+        this.router.navigateByUrl('');
       }
     )
     ;
@@ -35,9 +39,17 @@ export class AuthService{
   getToken(){
     return localStorage.getItem('token');
   }
-  logout() {
+  logout():Observable<boolean>{
     // remove user from local storage to log user out
     localStorage.removeItem('token');
+    return this.http.get('http://shops.laravel.loc/api/logout?token='+ this.getToken())
+    .map((response: Response) => response.json().res)
+    .catch((error: any )=>Observable.throw(error||'Server Error'));
+  }
+  isLoggedin():Observable<boolean>{
+    return this.http.get('http://shops.laravel.loc/api/isloggedin?token='+ this.getToken())
+    .map((response: Response) => response.json().res)
+    .catch((error: any )=>Observable.throw(error||'Server Error'));
   }
 
 }
