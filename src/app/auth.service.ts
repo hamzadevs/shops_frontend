@@ -39,17 +39,21 @@ export class AuthService{
   getToken(){
     return localStorage.getItem('token');
   }
-  logout():Observable<boolean>{
+  logout(){
+    var token = this.getToken();
     // remove user from local storage to log user out
     localStorage.removeItem('token');
-    return this.http.get('http://shops.laravel.loc/api/logout?token='+ this.getToken())
+    return this.http.get('http://shops.laravel.loc/api/logout?token='+ token)
     .map((response: Response) => response.json().res)
-    .catch((error: any )=>Observable.throw(error||'Server Error'));
+    .catch((error: any )=> error);
   }
-  isLoggedin():Observable<boolean>{
-    return this.http.get('http://shops.laravel.loc/api/isloggedin?token='+ this.getToken())
-    .map((response: Response) => response.json().res)
-    .catch((error: any )=>Observable.throw(error||'Server Error'));
+  isLoggedin(){
+    var token = this.getToken();
+    if(token!=null){
+      return this.http.get('http://shops.laravel.loc/api/isloggedin?token='+ token)
+      .map((response: Response) => response.json().res)
+      .catch((error: any )=>Observable.throw(error||'Server Error'));
+    }else return Observable.throw(false||'Server Error');
   }
 
 }

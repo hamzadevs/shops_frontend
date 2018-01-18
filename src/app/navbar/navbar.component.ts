@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -7,15 +8,16 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  public showNavbar : boolean;
-  constructor(private authService: AuthService) {
-    this.authService.isLoggedin().subscribe((mode : boolean) =>{
-            this.showNavbar = mode;
-            console.log(this.showNavbar);
-        });
-  }
+  public showNavbar : any = false;
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.authService.isLoggedin().subscribe(response => this.showNavbar = response);
+    console.log(this.showNavbar);
+  }
+
+  onSignout(){
+    this.authService.logout().subscribe(response=>this.showNavbar = false);
   }
 
 }

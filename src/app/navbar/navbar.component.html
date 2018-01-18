@@ -1,12 +1,12 @@
 <div class="row">
   <div class="col-xs-12">
-    <div *ngIf="showNavbar | async">
-      <a href="#" [routerLink]="['/']">Nearby Shops</a>
-      <a href="#" [routerLink]="['/preffer']">Preferred Shops</a>
-      <a href="#" [routerLink]="['/signout']">SignOut</a>
+    <div *ngIf="showNavbar">
+      <a href="#" [routerLink]="['/']">Nearby Shops</a> |
+      <a href="#" [routerLink]="['/preffer']">Preferred Shops</a> |
+      <a href="#" (click)="onSignout()">SignOut</a>
     </div>
-    <div >
-      <a href="#" [routerLink]="['/signin']">Signin</a>
+    <div *ngIf="!showNavbar">
+      <a href="#" [routerLink]="['/signin']">Signin</a> |
       <a href="#" [routerLink]="['/signup']">Signup</a>
     </div>
   </div>

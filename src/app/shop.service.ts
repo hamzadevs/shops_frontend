@@ -28,7 +28,17 @@ export class ShopService{
     );
   }
   likeShop($id){
-    return this.http.get('http://shops.laravel.loc/api/shop/'+$id+'?token='+this.authService.getToken())
+    return this.http.get('http://shops.laravel.loc/api/shop/like/'+$id+'?token='+this.authService.getToken())
+    .map(
+      (response: Response) => {
+        console.log(response.json().shops);
+        return response.json().shops;
+      }
+    );
+  }
+
+  dislikeShop($id){
+    return this.http.get('http://shops.laravel.loc/api/shop/dislike/'+$id+'?token='+this.authService.getToken())
     .map(
       (response: Response) => {
         console.log(response.json().shops);

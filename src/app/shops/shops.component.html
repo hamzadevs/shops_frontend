@@ -1,5 +1,4 @@
-  <hr>
-<div class="col-xs-12">
-  <button type="button" class="btn btn-primary" (click) = "onGetShops()">Get Shops</button>
-  <app-shop *ngFor="let shop of shops" [shop]="shop"></app-shop>
+<hr>
+<div>
+  <app-shop *ngFor="let shop of shops" [shop]="shop" class="col-md-3"></app-shop>
 </div>

@@ -1,13 +1,13 @@
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <div class="panel-heading">
     <h3 class="panel-title"> {{ shop.name}}</h3>
   </div>
   <div class="panel-body">
-    <img src="" alt="" class="shop-img" >
-    <span class="label label-default">distance:</span>{{shop.distance}}
+    <img src="" alt="" class="shop-img" src="http://via.placeholder.com/100" >
+    <p class="text-center">Distance: {{shop.distance}}</p>
   </div>
   <div class="panel-footer" *ngIf="nearby">
-    <button type="button" class="btn btn-success" (click) = 'onLike()'>Like</button>
-    <button type="button" class="btn btn-danger" (click) = 'onDislike()'>Dislike</button>
+    <button type="button" class="btn btn-success left" (click) = 'onLike()'>Like</button>
+    <button type="button" class="btn btn-danger right" (click) = 'onDislike()'>Dislike</button>
   </div>
 </div>

@@ -12,10 +12,7 @@ import { AuthService } from '../auth.service';
 })
 export class ShopsComponent implements OnInit {
   shops: Shop[];
-  private isloggedin;
-  private nearby = true;
   constructor(private shopService: ShopService, private authService: AuthService) {
-    this.isloggedin = this.authService.isLoggedin();
   }
   ngOnInit() {
     this.shopService.getNearbyShops()
@@ -26,8 +23,8 @@ export class ShopsComponent implements OnInit {
   }
 
 
-  onGetShops(){
-    this.shopService.getNearbyShops()
+  onGetPrefferShops(){
+    this.shopService.getPrefferedShops()
       .subscribe(
         (shops: Shop[]) => this.shops = shops,
         (error: Response) => console.log(error)
