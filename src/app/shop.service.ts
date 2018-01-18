@@ -27,22 +27,22 @@ export class ShopService{
       }
     );
   }
-  likeShop($id){
-    return this.http.get('http://shops.laravel.loc/api/shop/like/'+$id+'?token='+this.authService.getToken())
+  likeShop(id: number){
+    return this.http.get('http://shops.laravel.loc/api/shop/like/'+id+'?token='+this.authService.getToken())
     .map(
       (response: Response) => {
-        console.log(response.json().shops);
-        return response.json().shops;
+        console.log(response.json().message);
+        return response.json().message;
       }
     );
   }
 
-  dislikeShop($id){
-    return this.http.get('http://shops.laravel.loc/api/shop/dislike/'+$id+'?token='+this.authService.getToken())
+  dislikeShop(id: number){
+    return this.http.get('http://shops.laravel.loc/api/shop/dislike/'+id+'?token='+this.authService.getToken())
     .map(
       (response: Response) => {
-        console.log(response.json().shops);
-        return response.json().shops;
+        console.log(response.json().message);
+        return response.json().message;
       }
     );
   }

@@ -31,4 +31,13 @@ export class ShopsComponent implements OnInit {
       );
   }
 
+  onHidden(shop: Shop){
+    const position = this.shops.findIndex(
+      (shopEl: Shop) =>{
+        return shopEl.id == shop.id;
+      }
+    );
+    this.shops.splice(position, 1);
+  }
+
 }
