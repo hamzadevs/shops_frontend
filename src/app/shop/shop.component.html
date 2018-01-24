@@ -1,0 +1,17 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"> {{ shop.name}}</h3>
+  </div>
+  <div class="panel-body">
+    <img src="" alt="" class="shop-img" src="http://via.placeholder.com/100" >
+    <p class="text-center">Distance: {{shop.distance}}</p>
+  </div>
+  <div class="panel-footer">
+    <div *ngIf="nearby">
+      <button type="button" class="btn btn-success" (click) = 'onLike()' style="width: 100%;">Like</button>
+    </div>
+    <div *ngIf="!nearby">
+      <button type="button" class="btn btn-danger" (click) = 'onDislike()' style="width: 100%;">Dislike</button>
+    </div>
+  </div>
+</div>

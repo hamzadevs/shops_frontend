@@ -1,0 +1,8 @@
+.shop-img{
+  width: 100%
+}
+
+:host {
+  display: inline-block;
+  margin: 10px;
+}
